@@ -29,13 +29,18 @@ export default class EmployeeFormComponent extends Component{
             method: 'POST',
             headers: { 
                 'Accept': 'application/json',
-                'Content-Type': 'application/json; charset=UTF-8'
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Access-Control-Allow-Origin':'*'
             },
             body: JSON.stringify(this.state.employee)
         };
 
         fetch('http://localhost:8080/api/employee', requestOptions)
-         .then((res) => res.json())
+         .then(
+            (res) => {
+                console.log("Response received: " + res.json())
+            }
+        )
          .catch((error) => {
             console.log(error.message);
          });
